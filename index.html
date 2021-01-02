@@ -42,56 +42,7 @@
 
     <!-- recipes -->
     <div class="recipes container grey-text text-darken-1">
-        <div class="card-panel recipe white row">
-            <img src="/img/dish.png" alt="recipe thumb">
-            <div class="recipe-details">
-                <div class="recipe-title">Edame Noodles</div>
-                <div class="recipe-ingredients">Edame Beans, Noodels, Garlic oil</div>
-            </div>
-            <div class="recipe-delete">
-                <i class="material-icons">delete_outline</i>
-            </div>
-        </div>
-        <div class="card-panel recipe white row">
-            <img src="/img/dish.png" alt="recipe thumb">
-            <div class="recipe-details">
-                <div class="recipe-title">Edame Noodles</div>
-                <div class="recipe-ingredients">Edame Beans, Noodels, Garlic oil</div>
-            </div>
-            <div class="recipe-delete">
-                <i class="material-icons">delete_outline</i>
-            </div>
-        </div>
-        <div class="card-panel recipe white row">
-            <img src="/img/dish.png" alt="recipe thumb">
-            <div class="recipe-details">
-                <div class="recipe-title">Edame Noodles</div>
-                <div class="recipe-ingredients">Edame Beans, Noodels, Garlic oil</div>
-            </div>
-            <div class="recipe-delete">
-                <i class="material-icons">delete_outline</i>
-            </div>
-        </div>
-        <div class="card-panel recipe white row">
-            <img src="/img/dish.png" alt="recipe thumb">
-            <div class="recipe-details">
-                <div class="recipe-title">Edame Noodles</div>
-                <div class="recipe-ingredients">Edame Beans, Noodels, Garlic oil</div>
-            </div>
-            <div class="recipe-delete">
-                <i class="material-icons">delete_outline</i>
-            </div>
-        </div>
-        <div class="card-panel recipe white row">
-            <img src="/img/dish.png" alt="recipe thumb">
-            <div class="recipe-details">
-                <div class="recipe-title">Schezwan Noodles</div>
-                <div class="recipe-ingredients">Edame Beans, Noodels, Garlic oil</div>
-            </div>
-            <div class="recipe-delete">
-                <i class="material-icons">delete_outline</i>
-            </div>
-        </div>
+
     </div>
 
     <div class="center">
@@ -119,7 +70,34 @@
         </form>
     </div>
 
+
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-firestore.js"></script>
+
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+    <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-analytics.js"></script>
+
+    <script>
+        // Your web app's Firebase configuration
+        // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+        var firebaseConfig = {
+            apiKey: "AIzaSyDZX0NPf28ozBv6nnsgH5sYXsGdRlJR8Pw",
+            authDomain: "my-pwa-harishdurga.firebaseapp.com",
+            projectId: "my-pwa-harishdurga",
+            storageBucket: "my-pwa-harishdurga.appspot.com",
+            messagingSenderId: "406097753821",
+            appId: "1:406097753821:web:18d9d396e3d343df888d34",
+            measurementId: "G-L2LKJPCQP6"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        firebase.analytics();
+        const db = firebase.firestore();
+    </script>
     <script src="/js/app.js"></script>
+    <script src="/js/db.js"></script>
     <script src="/js/ui.js"></script>
 </body>
 
