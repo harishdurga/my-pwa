@@ -1,4 +1,5 @@
-const staticCacheName = 'site-static'
+const staticCacheName = 'site-static-v1';
+const dynamicCacheName = 'site-dynamic-v1';
 //We specify the urls in the assets
 const assets = [
     '/',
@@ -27,14 +28,28 @@ self.addEventListener("install",event=>{
 })
 self.addEventListener('activate',event=>{
     // console.log("service worker has been activated");
+    event.waitUntil(
+        caches.keys().then(keys => {
+          //console.log(keys);
+          return Promise.all(keys
+            .filter(key => key !== staticCacheName)
+            .map(key => caches.delete(key))
+          );
+        })
+      );
 })
 //Fetch event
-self.addEventListener('fetch',event=>{
+self.addEventListener('fetch',evt=>{
     // console.log('fetch event',event);
-    event.respondWith(
-        caches.match(event.request).then(cacheRes=>{
-            //We are checking if the requested resource is in the cache else we will just return a fetch operation to the server
-            return cacheRes || fetch(event.request)
+    // if (!(evt.request.url.indexOf('http') === 0)) return; // skip the request. if request is not made with http protocol
+    evt.respondWith(
+        caches.match(evt.request).then(cacheRes => {
+            return cacheRes || fetch(evt.request).then(fetchRes => {
+            return caches.open(dynamicCacheName).then(cache => {
+                cache.put(evt.request.url, fetchRes.clone());
+                return fetchRes;
+            })
+            });
         })
-    )
+    );
 })
