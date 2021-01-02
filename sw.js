@@ -1,5 +1,5 @@
-const staticCacheName = 'site-static-v11';
-const dynamicCacheName = 'site-dynamic-v4';
+const staticCacheName = 'site-static-v12';
+const dynamicCacheName = 'site-dynamic-v5';
 //We specify the urls in the assets
 const assets = [
     '/',
