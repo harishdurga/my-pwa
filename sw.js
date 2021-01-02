@@ -11,7 +11,8 @@ const assets = [
     '/css/materialize.min.css',
     '/img/dish.png',
     'https://fonts.googleapis.com/icon?family=Material+Icons',
-    'https://fonts.gstatic.com/s/materialicons/v47/flUhRq6tzZclQEJ-Vdg-IuiaDsNcIhQ8tQ.woff2'
+    'https://fonts.gstatic.com/s/materialicons/v47/flUhRq6tzZclQEJ-Vdg-IuiaDsNcIhQ8tQ.woff2',
+    '/pages/fallback.html'
 ]
 //Install service worker
 //Here self represents the service worker itself
@@ -32,7 +33,7 @@ self.addEventListener('activate',event=>{
         caches.keys().then(keys => {
           //console.log(keys);
           return Promise.all(keys
-            .filter(key => key !== staticCacheName)
+            .filter(key => key !== staticCacheName && key !== dynamicCacheName)
             .map(key => caches.delete(key))
           );
         })
@@ -50,6 +51,10 @@ self.addEventListener('fetch',evt=>{
                 return fetchRes;
             })
             });
+        }).catch(err=>{
+            if(evt.request.url.indexOf('.html') > -1){
+                return caches.match('/pages/fallback.html')
+            }
         })
     );
 })
